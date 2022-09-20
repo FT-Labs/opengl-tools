@@ -1,8 +1,8 @@
-PROG = triangle
-SRC = ${PROG}.c
+PROG = prog
+SRC = ${PROG}.c log.c
 OBJ = ${SRC:.c=.o}
 
-CFLAGS = -Wall -O3 -I/usr/include/X11 -I/usr/include/GL
+CFLAGS = -Wall -Wextra -O3 -I/usr/include/X11 -I/usr/include/GL
 LDFLAGS = -lX11 -lGL -lGLEW -L/usr/X11/lib -lglfw
 
 CC = gcc
