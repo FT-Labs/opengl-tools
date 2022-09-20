@@ -5,6 +5,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "log.h"
+#define GLSL(version, ...) "#version " #version "\n" #__VA_ARGS__
+#define QUOTE(...) #__VA_ARGS__
 
 typedef struct Shader Shader;
 
