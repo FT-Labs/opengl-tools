@@ -17,7 +17,7 @@ static struct {
 } L;
 
 static const char *level_str[] = {
-    "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "NOTIFICATION"
+  "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"
 };
 
 #ifdef LOG_USE_COLOR
@@ -111,6 +111,7 @@ static void init_event(LogEvent *ev, void *udata)
 }
 
 void log_log(int level, const char *file, int line, const char *fmt, ...) {
+
     LogEvent ev = {
         .fmt   = fmt,
         .file  = file,
