@@ -15,4 +15,8 @@ all: ${PROG}
 ${PROG}: ${OBJ}
 	${CC} -o $@ ${LDFLAGS} ${OBJ}
 
+clean:
+	rm -r *.o
+	rm -r ${PROG}
+
 .PHONY: all ${PROG}
