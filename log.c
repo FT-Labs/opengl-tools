@@ -34,7 +34,7 @@ static void stdout_callback(LogEvent *ev)
 #ifdef LOG_USE_COLOR
     fprintf(
         ev->udata, "%s %s%-5s\x1b[0m \x1b[90m%s:%d:\x1b[0m ",
-        buf, level_colors[ev->level], level_str[ev->level},
+        buf, level_colors[ev->level], level_str[ev->level],
         ev->file, ev->line);
 #endif
     vfprintf(ev->udata, ev->fmt, ev->ap);

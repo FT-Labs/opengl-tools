@@ -1,5 +1,5 @@
-PROG = prog
-SRC = ${PROG}.c log.c
+PROG = triangle
+SRC = ${PROG}.c log.c gl_shader.c
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -O3 -I/usr/include/X11 -I/usr/include/GL
