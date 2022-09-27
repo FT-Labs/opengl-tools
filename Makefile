@@ -1,9 +1,9 @@
-PROG = triangle
-SRC = ${PROG}.c log.c gl_shader.c
+PROG ?= NAME
+SRC = ${PROG}.c log.c gl_shader.c window.c camera.c
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -O3 -I/usr/include/X11 -I/usr/include/GL
-LDFLAGS = -lX11 -lGL -lGLEW -L/usr/X11/lib -lglfw
+LDFLAGS = -lX11 -lGL -lGLEW -L/usr/X11/lib -lglfw -lm
 
 CC = gcc
 
