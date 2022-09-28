@@ -23,8 +23,6 @@ struct Shader {
     void(*destroy)(Shader *);
 };
 
-void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp);
-void shader_destroy(Shader *shader);
 long file_size(FILE *fp);
 Shader shader_init();
 void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp);
