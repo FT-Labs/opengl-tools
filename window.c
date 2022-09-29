@@ -31,10 +31,10 @@ void handle_mouse(GLFWwindow* win, double x, double y)
 }
 
 
-struct Window *init_window()
+struct Window *init_window(int width, int height, int samples, int major, int minor)
 {
-    window.w = 1898;
-    window.h = 992;
+    window.w = width;
+    window.h = height;
     window.x_change = 0.0f;
     window.y_change = 0.0f;
 
@@ -42,13 +42,14 @@ struct Window *init_window()
         glfwTerminate();
         exit(1);
     }
-    glfwWindowHint(GLFW_SAMPLES, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_SAMPLES, samples);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     window.win = glfwCreateWindow(window.w, window.h, "Test", NULL, NULL);
 
     if (!window.win) {
+        fprintf(stderr, "Error creating window");
         glfwTerminate();
         exit(1);
     }
@@ -68,6 +69,7 @@ struct Window *init_window()
     if (glewInit() != GLEW_OK) {
         glfwDestroyWindow(window.win);
         glfwTerminate();
+        fprintf(stderr, "Error initializing glew");
         exit(1);
     }
 

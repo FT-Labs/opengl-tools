@@ -22,7 +22,7 @@ void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp)
     /* load vertex file */
     FILE *vertex_stream;
     if (!(vertex_stream = fopen(vertex_fp, "r"))) {
-        printf("Can't open vertex file");
+        log_fatal("Can't open vertex file");
         exit(EXIT_FAILURE);
     }
 
@@ -33,7 +33,7 @@ void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp)
     shader->vertex_code[fsize] = 0; /* Set size+1 to null */
 
     int i = 0;
-    printf("Reading shader...\n");
+    log_debug("Reading shader...\n");
     while ((shader->vertex_code[i] = fgetc(vertex_stream)) != EOF)
         i++;
     shader->vertex_code[i] = 0;
@@ -52,7 +52,7 @@ void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp)
     shader->fragment_code[fsize] = 0; /* Set size+1 to null */
 
     i = 0;
-    printf("Reading fragment...\n");
+    log_debug("Reading fragment...\n");
     while ((shader->fragment_code[i] = fgetc(fragment_stream)) != EOF)
         i++;
     shader->fragment_code[i] = 0;
@@ -60,11 +60,11 @@ void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp)
 
 	/* Creating shader objects */
 	if(!(shader->vertex = glCreateShader(GL_VERTEX_SHADER))){
-		printf("Shaders: Error creating vertex shader object!\n");
+        log_debug("Shaders: Error creating vertex shader object!\n");
 	}
 
 	if(!(shader->fragment = glCreateShader(GL_FRAGMENT_SHADER))){
-		printf("Shaders: Error creating fragment shader object!\n");
+		log_debug("Shaders: Error creating fragment shader object!\n");
 	}
 
     const char *ptr_vertex = shader->vertex_code;
@@ -75,13 +75,13 @@ void shader_load(Shader *shader, const char *vertex_fp, const char *fragment_fp)
     glShaderSource(shader->fragment, 1, &ptr_fragment, &flength);
 
     /* Compile */
-    printf("Compiling...\n");
+    log_debug("Compiling...\n");
     glCompileShader(shader->vertex);
     glCompileShader(shader->fragment);
 
     /* Link it */
     if (!(shader->program = glCreateProgram())) {
-        printf("Creating program object failed.\n");
+        log_debug("Creating program object failed.\n");
     }
 
     glAttachShader(shader->program, shader->vertex);

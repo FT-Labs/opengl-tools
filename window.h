@@ -16,6 +16,6 @@ struct Window {
 };
 
 
-struct Window *init_window();
+struct Window *init_window(int width, int height, int samples, int major, int minor);
 void handle_mouse(GLFWwindow* win, double x, double y);
 void handle_keys(GLFWwindow* win, int key, int code, int action, int mode);
